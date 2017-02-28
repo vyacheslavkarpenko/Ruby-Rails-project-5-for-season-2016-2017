@@ -245,7 +245,6 @@ DEPENDENCIES
   rspec-rails (~> 3.5, >= 3.5.2)
   sass-rails (~> 5.0)
   sidekiq (~> 4.2, >= 4.2.9)
-  sinatra
   spring
   spring-watcher-listen (~> 2.0.0)
   swagger (~> 1.4, >= 1.4.1)
