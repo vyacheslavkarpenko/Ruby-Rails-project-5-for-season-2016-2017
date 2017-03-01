@@ -1,5 +1,5 @@
 class OrdersDish < ApplicationRecord
 
-  belongs_to :orders
-  belongs_to :dishes
+  belongs_to :order
+  belongs_to :dish
 end

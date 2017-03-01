@@ -1,7 +1,7 @@
 class Dish < ApplicationRecord
 
-  has_many :orders_dishes
-  has_many :orders, through: :orders_dishes
-  has_many :menu_dishes
-  has_one  :menu, through: :menu_dishes
+  has_many :orders_dish
+  has_many :order, through: :orders_dish
+  has_many :menu_dish
+  has_one  :menu, through: :menu_dish
 end

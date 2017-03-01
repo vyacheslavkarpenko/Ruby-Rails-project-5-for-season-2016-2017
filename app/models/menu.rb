@@ -1,6 +1,6 @@
 class Menu < ApplicationRecord
 
-  belongs_to :restaurants
-  has_many   :menu_dishes
-  has_many   :dishes, through: :menu_dishes
+  belongs_to :restaurant
+  has_many   :menu_dish
+  has_many   :dish, through: :menu_dish
 end
