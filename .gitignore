@@ -43,3 +43,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+#Ignore swp file
+db/migrate/.20170228112113_create_dishes.rb.swp
+

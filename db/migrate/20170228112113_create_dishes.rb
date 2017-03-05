@@ -4,7 +4,7 @@ class CreateDishes < ActiveRecord::Migration[5.0]
       t.string  :name
       t.text    :description
       t.integer :price
-      t.integer :weight
+      t.float   :weight
       t.string  :picture
 
       t.timestamps
