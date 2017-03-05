@@ -1,0 +1,5 @@
+<h1>Create new menu</h1>
+<%= form_for [@restaurant, @menu] do |f| %>
+   <%= f.text_area :name %>
+   <%= f.submit %>
+<% end %>
