@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
-  before_action :set_res, only: [ :show, :destoy, :update, :edit ]
+  before_action :set_res, only: [ :show, :edit, :update, :destroy ]
+  before_action :check_if_admin, only: [ :new, :create, :edit, :update, :destroy ]
 
   def index
     @restaurants = Restaurant.all
@@ -18,10 +19,20 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
+    if @restaurant.update_attributes(res_params)
+      redirect_to @restaurant
+    else
+      redirect_to :edit
+    end
   end
 
   def destroy
+    @restaurant.destroy
+    redirect_to :index
   end
 
   def show
@@ -35,6 +46,10 @@ class RestaurantsController < ApplicationController
 
   def res_params
     params.require(:restaurant).permit(:name, :address, :phone)
+  end
+
+  def check_if_admin
+    render_403 unless params[:admin]
   end
 end
 
