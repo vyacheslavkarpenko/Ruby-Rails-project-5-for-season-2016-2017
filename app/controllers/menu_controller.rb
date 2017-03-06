@@ -40,3 +40,4 @@ class MenuController < ApplicationController
   end
 
 end
+
