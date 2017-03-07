@@ -2,6 +2,8 @@
 capybara-*.html
 .idea/*
 .rspec
+*.swp
+*.swo
 /log
 /tmp
 /public/system
