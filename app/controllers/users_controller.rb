@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       @token.save
 
       session[:auth_token] = @token.token
-      redirect_to '/posts/new'
+      redirect_to '/users/new'
     end
 
     flash[:notice] = @auth_message

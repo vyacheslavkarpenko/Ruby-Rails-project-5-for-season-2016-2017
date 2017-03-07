@@ -8,6 +8,10 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+    respond_to do |format|
+      format.html
+      format.json { render json: @restaurant }
+    end
   end
 
   def create
