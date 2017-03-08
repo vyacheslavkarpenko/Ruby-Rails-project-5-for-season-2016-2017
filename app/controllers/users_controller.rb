@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       @token.save
 
       session[:auth_token] = @token.token
-      redirect_to '/posts/new'
+      redirect_to show
     end
 
     flash[:notice] = @auth_message
@@ -47,7 +47,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new
-    @user.name = params[:users][:name]
+    @user.first_name = params[:users][:first_name]
+    @user.last_name = params[:users][:last_name]
+    @user.phone = params[:users][:phone]
     @user.email = params[:users][:email]
     @user.password_hash = @user.generate_hash_for_password(params[:user_password])
     @user.save
