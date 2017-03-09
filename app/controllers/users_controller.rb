@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   def index
   end
 
@@ -10,55 +12,16 @@ class UsersController < ApplicationController
       end
   end
 
-  def login
-    if params[:users] == nil
-      return
-    end
-
-    @email = params[:users][:email]
-    @logged_in = false
-    @auth_message = ''
-    @user = nil
-    User.all.each do |user|
-      if user.email == @email
-        if user.compare_password(params[:user_password])
-          @logged_in = true
-          @user = user
-          @auth_message = 'Success!'
-        else
-          @auth_message= 'Wrong data!'
-        end
-        break
-      end
-    end
-
-    if @logged_in
-      @token = Token.new
-      @token.user_id = @user.id
-      @token.token = @token.generate_token
-      @token.save
-
-      session[:auth_token] = @token.token
-<<<<<<< HEAD
-      redirect_to '/users/new'
-=======
-      redirect_to show
->>>>>>> 334741547c701cec3a010e0da546e96c89452a69
-    end
-
-    flash[:notice] = @auth_message
-  end
-
+  
   def create
-    @user = User.new
-    @user.first_name = params[:users][:first_name]
-    @user.last_name = params[:users][:last_name]
-    @user.phone = params[:users][:phone]
-    @user.email = params[:users][:email]
-    @user.password_hash = @user.generate_hash_for_password(params[:user_password])
-    @user.save
+    @user = User.new(user_params)
+  	if @user.save
+  		flash[:notice] = "Welcome! Now you can sign in."
+  	else
+  		flash[:alert] = "There was a problem creating your account. Try again!"
+  	end
+  	redirect_to sign_in_path
 
-    redirect_to '/users/login'
   end
 
   def show
@@ -68,8 +31,25 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "Sucessfully updated profile."
+    else
+       redirect_to edit_users_path(@user), alert: "There was an issue"
+    end
   end
 
   def destroy
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: "User successfully deleted."
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :phone, :email, :password_hash)
   end
 end
