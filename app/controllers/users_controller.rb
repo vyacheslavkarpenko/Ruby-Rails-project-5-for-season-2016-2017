@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @user }
-      end
+    end
   end
 
   
@@ -31,10 +31,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update_attributes(user_params)
       redirect_to user_path(@user), notice: "Sucessfully updated profile."
     else
-       redirect_to edit_users_path(@user), alert: "There was an issue"
+      redirect_to edit_user_path(@user), alert: "There was an issue"
     end
   end
 

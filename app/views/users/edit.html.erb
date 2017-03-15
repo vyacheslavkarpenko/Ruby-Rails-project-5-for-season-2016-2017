@@ -1,2 +1,12 @@
 <h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% if session[:user_id] == @user.id %>
+  <div class="enter-bx">
+   <h1>Edit User</h1>
+  <%= render 'form' %>
+  </div>
+  <div class="delete"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: "Are you sure?"} %></div>
+<% else %>
+  <%= flash[:alert] = "You must be logged in" %><br>
+  <%= link_to 'Back', root_path %>
+<% end %>
+
