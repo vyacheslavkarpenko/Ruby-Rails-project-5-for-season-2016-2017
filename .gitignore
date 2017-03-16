@@ -4,6 +4,7 @@ capybara-*.html
 .rspec
 *.swp
 *.swo
+#/db/schema.rb
 /log
 /tmp
 /public/system
