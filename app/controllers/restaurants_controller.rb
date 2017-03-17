@@ -1,45 +1,38 @@
 class RestaurantsController < ApplicationController
-  before_action :set_res, only: [ :show, :edit, :update, :destroy ]
-  before_action :check_if_admin, only: [ :new, :create, :edit, :update, :destroy ]
+  before_filter :set_res, :except => [ :index, :create ]
 
   def index
     @restaurants = Restaurant.all
+    render json: @restaurants 
   end
-
-  def new
-    @restaurant = Restaurant.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @restaurant }
-    end
-  end
-
+ 
   def create
     @restaurant = Restaurant.new(res_params)
     if @restaurant.save
-      redirect_to @restaurant
+      render json:  @restaurant, status: :created
     else
-      render :new
+      render json: @restaurant.errors, status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   def update
     if @restaurant.update_attributes(res_params)
-      redirect_to @restaurant
+      render json: @restaurant 
     else
-      redirect_to :edit
+      render json: @restaurant.errors, status: :unprocessable_entity 
     end
   end
 
   def destroy
-    @restaurant.destroy
-    redirect_to :index
+   if @restaurant.destroy
+     render json: @restaurant 
+   else 
+     render json: @restaurant.errors, status: :unprocessable_entity
+   end
   end
 
   def show
+    render json: @restaurant
   end
 
   private
@@ -50,10 +43,6 @@ class RestaurantsController < ApplicationController
 
   def res_params
     params.require(:restaurant).permit(:name, :address, :phone)
-  end
-
-  def check_if_admin
-    render_403 unless params[:admin]
   end
 end
 
