@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: Ruby-Rails-project-5-for-season-2016-2017_production
-  username: admin
+  username: Ruby-Rails-project-5-for-season-2016-2017
   password: <%= ENV['RUBY-RAILS-PROJECT-5-FOR-SEASON-2016-2017_DATABASE_PASSWORD'] %>

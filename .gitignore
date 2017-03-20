@@ -2,15 +2,14 @@
 capybara-*.html
 .idea/*
 .rspec
+# Ignore swp file
 *.swp
 *.swo
-#/db/schema.rb
 /log
 /tmp
 /public/system
 /coverage/
 /spec/tmp
-app/models/.user.rb.swp
 **.orig
 rerun.txt
 .DS_Store
@@ -46,6 +45,4 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
-#Ignore swp file
-db/migrate/.20170228112113_create_dishes.rb.swp
 
