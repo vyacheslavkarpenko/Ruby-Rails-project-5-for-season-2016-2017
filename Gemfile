@@ -43,6 +43,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 gem 'active_model_serializers'
+gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -63,7 +64,6 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   #Powerful gem to create forms
-  gem 'simple_form'
 end
 
 group :test do
