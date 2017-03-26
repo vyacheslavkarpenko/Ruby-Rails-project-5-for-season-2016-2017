@@ -1,7 +1,7 @@
 module API
   module V1
     class Base < Grape::API
-      mount User
+      mount UserAPI
     end
   end
 end

@@ -1,5 +1,3 @@
-require 'securerandom'
-
 class User < ApplicationRecord
   validates :phone, numericality: { greater_than: 6, allow_nil: true }
   validates :first_name, :last_name, :email, :password_digest, presence: true
@@ -9,7 +7,6 @@ class User < ApplicationRecord
   before_create :set_auth_token
   
   def set_auth_token
-    p 'WTF are you here?'
     return if auth_token.present?
     self.auth_token = generate_auth_token
   end
