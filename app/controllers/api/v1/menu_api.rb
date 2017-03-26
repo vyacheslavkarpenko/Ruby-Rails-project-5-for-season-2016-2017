@@ -16,6 +16,7 @@ module API
           requires :name, type: String, desc: 'Menu name.'
           requires :restaurant_id, type: String, desc: 'Restaurant id.'
         end
+
         post do
           if UsersHelper.authorize(self)
             menu = Menu.new

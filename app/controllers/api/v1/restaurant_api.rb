@@ -17,6 +17,7 @@ module API
           requires :address, type: String, desc: 'Restaurant address.'
           requires :phone, type: String, desc: 'Restaurant phone number.'
         end
+
         post do
           if UsersHelper.authorize(self)
             restaurant = Restaurant.new
@@ -28,7 +29,6 @@ module API
           end
         end
       end
-
     end
   end
 end

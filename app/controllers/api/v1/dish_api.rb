@@ -19,6 +19,7 @@ module API
           requires :weight, type: Float, desc: 'Weight.'
           requires :picture, type: String, desc: 'Picture url.'
         end
+
         post do
           if UsersHelper.authorize(self)
             dish = Dish.new
