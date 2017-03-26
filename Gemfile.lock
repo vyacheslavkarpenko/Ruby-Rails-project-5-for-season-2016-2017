@@ -70,6 +70,7 @@ GEM
       activesupport
     childprocess (0.6.2)
       ffi (~> 1.0, >= 1.0.11)
+    choice (0.2.0)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -180,6 +181,11 @@ GEM
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
+    rails-erd (1.5.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.0.2)
@@ -218,6 +224,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    ruby-graphviz (1.2.3)
     rubyzip (1.2.1)
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -312,6 +319,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rails-erd
   rspec-rails (~> 3.5, >= 3.5.2)
   sass-rails (~> 5.0)
   selenium-webdriver
