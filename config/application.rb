@@ -14,6 +14,5 @@ module RubyRailsProject5ForSeason20162017
     GrapeSwaggerRails.options.api_auth     = 'bearer'
     GrapeSwaggerRails.options.api_key_name = 'Authorization'
     GrapeSwaggerRails.options.api_key_type = 'header'
-
   end
 end
