@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_filter :set_res, :except => [ :index, :create ]
+  #before_filter :set_res, :except => [ :index, :create ]
 
   def index
     @restaurants = Restaurant.all
