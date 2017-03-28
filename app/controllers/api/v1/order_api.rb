@@ -17,7 +17,6 @@ module API
           requires :restaurant_id, type: String, desc: 'Restaurant id.'
           optional :complete, type: Boolean, values: [true], desc: 'Order completed.'
         end
-
         post do
           if UsersHelper.authorize(self)
             order = Order.new
@@ -25,7 +24,7 @@ module API
             order.restaurant = Restaurant.find(params[:restaurant_id])
             order.complete = params[:complete]
             error = order.save
-            if error == nil
+            if error
               {'id':order.id, 'user':order.id, 'restaurant':order.restaurant}
             else
               {'error':order.errors.messages}

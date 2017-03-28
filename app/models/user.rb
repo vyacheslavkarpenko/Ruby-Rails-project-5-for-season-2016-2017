@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates :phone, numericality: { greater_than: 6, allow_nil: true }
   validates :first_name, :last_name, :email, :password_digest, presence: true
+  validates  :email, uniqueness: true
   has_many  :orders
   has_secure_password
 
