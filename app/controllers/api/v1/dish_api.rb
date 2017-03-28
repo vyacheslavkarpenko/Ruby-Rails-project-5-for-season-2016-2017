@@ -19,7 +19,6 @@ module API
           requires :weight, type: Float, desc: 'Weight.'
           requires :picture, type: String, desc: 'Picture url.'
         end
-
         post do
           if UsersHelper.authorize(self)
             dish = Dish.new
@@ -30,6 +29,36 @@ module API
             dish.picture = params[:picture]
             dish.save
             dish
+          end
+        end
+
+        desc 'Update price, picture.'
+        params do
+          requires :id, type: String, desc: 'Dish id '
+          requires :price, type: String, desc: 'Change price '
+          requires :picture, type: String, desc: 'Change picture.'
+        end
+        put ':id' do
+          if UsersHelper.authorize(self)
+            update_dish = Dish.find(params[:id]).update({
+              price:params[:price],
+              picture:params[:picture]
+            })
+            if update_dish
+              { 'id':params[:id], 'price':params[:price], 'picture':params[:picture]}
+            else
+              { 'error':update_dish.errors.messages }
+            end
+          end
+        end
+
+        desc 'Delete dish.'
+        params do
+          requires :id, type: String, desc: 'Dish id.'
+        end
+        delete ':id' do
+          if UsersHelper.authorize(self)
+            Dish.find(params[:id]).destroy!
           end
         end
       end

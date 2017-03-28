@@ -16,14 +16,13 @@ module API
           requires :order_id, type: String, desc: 'Order id.'
           requires :dish_id, type: String, desc: 'Dish id.'
         end
-
         post do
           if UsersHelper.authorize(self)
             order_dish = OrdersDish.new
             order_dish.order = Menu.find(params[:order_id])
             order_dish.dish = Dish.find(params[:dish_id])
             error = order_dish.save
-            if error == nil
+            if error
               { 'id':order_dish.id, 'name':order_dish.name, 'restaurant':order_dish.description }
             else
               {'error':order_dish.errors.messages}
