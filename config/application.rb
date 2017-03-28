@@ -1,5 +1,4 @@
-require File.expand_path('../boot', __FILE__)
-#require_relative 'boot'
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -10,15 +9,10 @@ Bundler.require(*Rails.groups)
 module RubyRailsProject5ForSeason20162017
   class Application < Rails::Application
 
-    config.generators do |g|
-      g.test_framework :rspec,
-        fixtures: true,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        controller_specs: true,
-        request_specs: false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
-    end
+    GrapeSwaggerRails.options.url      = '/api/v1/swagger_doc'
+    GrapeSwaggerRails.options.app_url  = 'http://localhost:3000'
+    GrapeSwaggerRails.options.api_auth     = 'bearer'
+    GrapeSwaggerRails.options.api_key_name = 'Authorization'
+    GrapeSwaggerRails.options.api_key_type = 'header'
   end
 end
