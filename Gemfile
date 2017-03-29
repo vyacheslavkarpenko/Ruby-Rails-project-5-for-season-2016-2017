@@ -13,6 +13,7 @@ gem 'swagger-ui', '~> 0.0.2'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 gem 'grape-entity'
+gem 'hashie-forbidden_attributes'
 
 # - background jobs
 gem 'sidekiq', '~> 4.2', '>= 4.2.9'
