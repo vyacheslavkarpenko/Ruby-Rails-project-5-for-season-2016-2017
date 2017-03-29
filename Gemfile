@@ -12,6 +12,7 @@ gem 'swagger', '~> 1.4', '>= 1.4.1'
 gem 'swagger-ui', '~> 0.0.2'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+gem 'grape-entity'
 
 # - background jobs
 gem 'sidekiq', '~> 4.2', '>= 4.2.9'

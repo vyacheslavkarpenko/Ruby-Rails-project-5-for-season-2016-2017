@@ -3,6 +3,11 @@ module API
     include UsersHelper
     class UserAPI < Grape::API
 
+      helpers do
+       def create_params
+        declared(params).slice(:first_name, :last_name, :phone, :email, :password_digest)
+       end
+      end
       resource :users do
         desc 'Returns authorized user.'
         get do
@@ -11,19 +16,14 @@ module API
 
         desc 'Returns new user.'
         params do
-          requires :first_name, type: String, desc: 'Users first name.'
-          requires :last_name, type: String, desc: 'Users last name.'
-          requires :phone, type: String, desc: 'Users phone number.'
-          requires :email, type: String, desc: 'Users email.'
-          requires :password_digest, type: String, desc: 'Users password.'
+            requires :first_name, type: String, desc: 'Users first name.'
+            requires :last_name, type: String, desc: 'Users last name.'
+            requires :phone, type: String, desc: 'Users phone number.'
+            requires :email, type: String, desc: 'Users email.'
+            requires :password_digest, type: String, desc: 'Users password.'
         end
         post do
-          user = User.new
-          user.email = params[:email]
-          user.first_name = params[:first_name]
-          user.last_name = params[:last_name]
-          user.phone = params[:phone]
-          user.password_digest = params[:password_digest]
+          user = User.new(create_params)
           user.set_auth_token
           user.save
           user
