@@ -11,7 +11,8 @@ module API
       resource :users do
         desc 'Returns authorized user.'
         get do
-          UsersHelper.authorize(self)
+          user = UsersHelper.authorize(self)
+          present user, with: Entities::UserEntity
         end
 
         desc 'Returns new user.'
@@ -28,7 +29,7 @@ module API
           user = User.new(declared(params, include_missing: false)[:user_params])
           user.set_auth_token
           user.save
-          user
+          present user, with: Entities::UserEntity
         end
       end
 

@@ -7,41 +7,41 @@ module API
         desc 'Returns all restaurants.'
         get do
           if UsersHelper.authorize(self)
-            { 'restaurants': Restaurant.all   }
+            #{ 'restaurants': Restaurant.all   }
+            res = Restaurant.all
+            present res, with: Entities::RestaurantEntity 
           end
         end
 
         desc 'Creates new restaurant.'
         params do
-          requires :name, type: String, desc: 'Restaurant name.'
-          requires :address, type: String, desc: 'Restaurant address.'
-          requires :phone, type: String, desc: 'Restaurant phone number.'
+          requires :res_params, type: Hash do
+            requires :name, type: String, desc: 'Restaurant name.'
+            requires :address, type: String, desc: 'Restaurant address.'
+            requires :phone, type: String, desc: 'Restaurant phone number.'
+          end
         end
         post do
           if UsersHelper.authorize(self)
-            restaurant = Restaurant.new
-            restaurant.name = params[:name]
-            restaurant.address = params[:address]
-            restaurant.phone = params[:phone]
+            restaurant = Restaurant.new(declared(params, include_missing: false)[:res_params])
             restaurant.save
-            restaurant
+            present restaurant, with: Entities::RestaurantEntity
           end
         end
 
         desc 'Update address and phone.'
         params do
-          requires :id, type: String, desc: 'Restaurant id '
-          requires :address, type: String, desc: 'Restaurant address '
-          requires :phone, type: String, desc: 'Restaurant phone.'
+          requires :res_params, type: Hash do
+            requires :id, type: String, desc: 'Restaurant id '
+            requires :address, type: String, desc: 'Restaurant address '
+            requires :phone, type: String, desc: 'Restaurant phone.'
+          end
         end
         put ':id' do
           if UsersHelper.authorize(self)
-            update_restaurant = Restaurant.find(params[:id]).update({
-                address:params[:address],
-                phone:params[:phone]
-            })
+            update_restaurant = Restaurant.find(params[:id]).update(declared(params, include_missing: false)[:res_params])
             if update_restaurant
-              { 'id':params[:id], 'address':params[:address], 'phone':params[:phone]}
+              present update_restaurant, with: Entities::RestaurantEntity 
             else
               { 'error':update_restaurant.errors.messages }
             end
