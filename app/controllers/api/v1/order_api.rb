@@ -8,7 +8,7 @@ module API
         get do
           if UsersHelper.authorize(self)
             orders = Order.all
-            present orders, with: Entity::OrderEntity  
+            present orders, with: Entities::OrderEntity  
           end
         end
 
