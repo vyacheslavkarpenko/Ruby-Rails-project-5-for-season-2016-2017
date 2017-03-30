@@ -41,7 +41,7 @@ module API
           if UsersHelper.authorize(self)
             update_restaurant = Restaurant.find(params[:id]).update(declared(params, include_missing: false)[:res_params])
             if update_restaurant
-              present update_restaurant, with: Entities::RestaurantEntity 
+              { 'id':params[:id], 'address':params[:address], 'phone':params[:phone] } 
             else
               { 'error':update_restaurant.errors.messages }
             end

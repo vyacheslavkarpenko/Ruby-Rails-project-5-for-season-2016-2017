@@ -13,17 +13,17 @@ module API
 
         desc 'Creates new menu.'
         params do
-          requires :name, type: String, desc: 'Menu name.'
-          requires :restaurant_id, type: String, desc: 'Restaurant id.'
+          requires :menu_params, type: Hash do
+            requires :name, type: String, desc: 'Menu name.'
+            requires :restaurant_id, type: String, desc: 'Restaurant id.'
+          end
         end
         post do
           if UsersHelper.authorize(self)
-            menu = Menu.new
-            menu.name = params[:name]
-            menu.restaurant = Restaurant.find(params[:restaurant_id])
+            menu = Menu.new(declared(params, include_missing: false)[:menu_params])
             error = menu.save
             if error
-              {'id':menu.id, 'name':menu.name, 'restaurant':menu.restaurant}
+              present menu, with: Entities::MenuEntity  
             else
               {'error':menu.errors.messages}
             end

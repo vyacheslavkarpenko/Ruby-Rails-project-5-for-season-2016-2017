@@ -7,7 +7,8 @@ module API
         desc 'Returns all orders.'
         get do
           if UsersHelper.authorize(self)
-            { 'order': Order.all   }
+            orders = Order.all
+            present orders, with: Entity::OrderEntity  
           end
         end
 
