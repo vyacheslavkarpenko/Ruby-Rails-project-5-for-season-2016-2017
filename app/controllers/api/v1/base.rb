@@ -5,9 +5,9 @@ module API
       mount RestaurantAPI
       mount DishAPI
       mount MenuAPI
-      mount MenuDishAPI
-      mount OrderDishAPI
       mount OrderAPI
+        # mount MenuDishAPI
+        # mount OrderDishAPI
     end
   end
 end
