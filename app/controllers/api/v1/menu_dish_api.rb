@@ -23,7 +23,7 @@ module API
             menu_dish.dish = Dish.find(params[:dish_id])
             error = menu_dish.save
             if error
-              { 'id':menu_dish.id, 'name':menu_dish.name, 'restaurant':menu_dish.description }
+              { 'menu_dish_id':menu_dish.menu_id, 'menu_dish_id':menu_dish.dish_id }
             else
               {'error':menu_dish.errors.messages}
             end
