@@ -7,9 +7,7 @@ module API
         desc 'Returns all restaurants.'
         get do
           if UsersHelper.authorize(self)
-            #{ 'restaurants': Restaurant.all   }
-            res = Restaurant.all
-            present res, with: Entities::RestaurantEntity 
+            ActiveModelSerializers::SerializableResource.new(Restaurant.all)
           end
         end
 
