@@ -4,3 +4,13 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+require 'rack/cors'
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :delete, :patch, :options]
+  end
+end

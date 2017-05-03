@@ -14,6 +14,7 @@ gem 'grape-swagger'
 gem 'grape-swagger-rails'
 gem 'grape-entity'
 gem 'hashie-forbidden_attributes'
+gem 'rack-cors', :require => 'rack/cors'
 
 # - background jobs
 gem 'sidekiq', '~> 4.2', '>= 4.2.9'
