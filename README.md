@@ -6,3 +6,15 @@ The task
 --------------------
 
 * Бекенд та АПІ для замовлення їжі, ресторан імпортує список їжі, а потім АПІ може прийняти замовлення, а на бекенді можна менеджерити замовлення. При цьому АПі не має бути прив'язаний до фронтенд сайту.
+
+###### Instruction
+
+> $ bundler install
+>
+>$ rake db:migrate
+>
+>$ rails server
+>
+>[localhost](http://localhost:3000/swagger)
+
+Heroku server link [API](https://order-dish.herokuapp.com/swagger)
