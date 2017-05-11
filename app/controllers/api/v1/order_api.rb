@@ -22,14 +22,13 @@ module API
         post do
           if UsersHelper.authorize(self)
             order = Order.new
-            # dish = Dish.new
             order.user = User.find(params[:user_id])
             order.restaurant = Restaurant.find(params[:restaurant_id])
             dish = Dish.find(params[:dish_id])
             order.complete = params[:complete]
             error = order.save
             if error
-              {'id':order.id, 'user':order.id, 'restaurant':order.restaurant, 'dish':dish}
+              {'id':order.id, 'user_id':order.user_id, 'restaurant':order.restaurant, 'dish':dish}
             else
               {'error':order.errors.messages}
             end
