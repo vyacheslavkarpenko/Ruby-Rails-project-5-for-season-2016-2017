@@ -16,17 +16,20 @@ module API
         params do
           requires :user_id, type: String, desc: 'User id.'
           requires :restaurant_id, type: String, desc: 'Restaurant id.'
+          requires :dish_id, type: String, desc: 'Dish id.'
           optional :complete, type: Boolean, values: [true], desc: 'Order completed.'
         end
         post do
           if UsersHelper.authorize(self)
             order = Order.new
+            # dish = Dish.new
             order.user = User.find(params[:user_id])
             order.restaurant = Restaurant.find(params[:restaurant_id])
+            dish = Dish.find(params[:dish_id])
             order.complete = params[:complete]
             error = order.save
             if error
-              {'id':order.id, 'user':order.id, 'restaurant':order.restaurant}
+              {'id':order.id, 'user':order.id, 'restaurant':order.restaurant, 'dish':dish}
             else
               {'error':order.errors.messages}
             end

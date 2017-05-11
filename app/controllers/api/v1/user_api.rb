@@ -8,6 +8,7 @@ module API
       #  declared(params).slice(:first_name, :last_name, :phone, :email, :password_digest)
       # end
       #end
+
       resource :users do
         desc 'Returns authorized user.'
         get do
