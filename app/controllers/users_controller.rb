@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
    def get_current_user
-     user = authenticateAndGetUserOrThrow401
-     if user != nil
+     user = authenticate_user_or_throw_error
+     if !user.nil?
       render json: user, status: 200
      end
    end
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 
    def show
      @user = User.find(params[:id])
-     # render json: current_user
    end
 
   def create
@@ -49,18 +48,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :phone, :email, :password_digest)
   end
-
-
-   # def new
-   #   user = User.new
-   #   user.last_name = 'bro'
-   #   user.first_name = 'svat'
-   #   user.phone = '12345'
-   #   user.email = 'lol@mail.com'
-   #   user.password_digest = 'boo'
-   #
-   #   user.set_auth_token
-   #   user.save
-   #   render json: user
-   # end
 end

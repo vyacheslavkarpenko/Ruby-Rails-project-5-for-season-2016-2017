@@ -33,7 +33,6 @@ module API
           present user, with: Entities::UserEntity
         end
       end
-
     end
   end
 end
