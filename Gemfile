@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -16,7 +16,6 @@ gem 'grape-entity'
 gem 'hashie-forbidden_attributes'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails_admin', '~> 1.1.1'
-
 
 # - background jobs
 gem 'sidekiq', '~> 4.2', '>= 4.2.9'
