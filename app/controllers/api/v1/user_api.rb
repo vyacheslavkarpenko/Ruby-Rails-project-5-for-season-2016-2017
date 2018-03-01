@@ -26,6 +26,7 @@ module API
             requires :password_digest, type: String, desc: 'Users password.'
           end
         end
+        
         post do
           user = User.new(declared(params, include_missing: false)[:user_params])
           user.set_auth_token
