@@ -8,7 +8,7 @@ module API
         get do
           if UsersHelper.authorize(self)
             dishes = Dish.all
-            present dishes, with: Entities::DishEntity  
+            present dishes, with: Entities::DishEntity
           end
         end
 
