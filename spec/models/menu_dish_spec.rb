@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe MenuDish, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should belong_to(:menu) }
+    it { should belong_to(:dish) }
+  end
+
+  describe 'validations' do
+    it { should validate_uniqueness_of(:dish_id) }
+  end
 end
