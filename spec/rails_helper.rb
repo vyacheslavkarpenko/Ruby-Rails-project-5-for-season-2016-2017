@@ -35,12 +35,17 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
-  
+
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
       with.library :rails
     end
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   # Filter lines from Rails gems in backtraces.
