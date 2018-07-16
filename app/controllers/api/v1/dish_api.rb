@@ -26,7 +26,7 @@ module API
           if UsersHelper.authorize(self)
             dish = Dish.new(declared(params, include_missing: false)[:dish_params])
             dish.save
-            present dish, with: Entities::DishEntity 
+            present dish, with: Entities::DishEntity
           end
         end
 
@@ -38,10 +38,10 @@ module API
         end
         put ':id' do
           if UsersHelper.authorize(self)
-            update_dish = Dish.find(params[:id]).update({
-              price:params[:price],
-              picture:params[:picture]
-            })
+            update_dish = Dish.find(params[:id]).update(
+              price: params[:price],
+              picture: params[:picture]
+            )
             if update_dish
               { 'id':params[:id], 'price':params[:price], 'picture':params[:picture]}
             else

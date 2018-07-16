@@ -3,4 +3,5 @@ class Dish < ApplicationRecord
   has_many :order, through: :orders_dish
   has_many :menu_dish
   has_one  :menu, through: :menu_dish
+  validates_uniqueness_of :name
 end
